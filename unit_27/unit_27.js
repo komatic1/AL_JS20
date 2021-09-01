@@ -8,10 +8,30 @@
 */
 
 function t1() {
+    // resole - when we got expected answer
+    // reject - when it's fail
+    let a = new Promise((resolve, reject) => {
+        fetch('http://getpost.itgid.info/index2.php?auth=DdC33D7d2C2a7&action=1', { method: 'GET' })
+            .then(data => {
+                resolve(data.text());
+            });
+    });
+
+    let b = new Promise((resolve, reject) => {
+        fetch('http://getpost.itgid.info/index2.php?auth=DdC33D7d2C2a7&action=2', { method: 'GET' })
+            .then(data => {
+                resolve(data.text());
+            });
+    });
+
+    // promiseAll - will wait until two promise and only after that starts code inside
+    Promise.all([a, b]).then(value => {
+        document.querySelector('.out-1').innerHTML = value;
+    });
 }
 
 // ваше событие здесь!!!
-
+document.querySelector('.b-1').onclick = t1;
 // Task 2 ============================================
 /* 
  <p> Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 3. Добавьте
@@ -26,11 +46,28 @@ function t1() {
 */
 
 function t2() {
+    let a = new Promise((resolve, reject) => {
+        fetch('http://getpost.itgid.info/index2.php?auth=DdC33D7d2C2a7&action=3&num1=10&num2=13', { method: 'GET' })
+            .then(data => {
+                resolve(data.text());
+            });
+    });
 
+    let b = new Promise((resolve, reject) => {
+        fetch('http://getpost.itgid.info/index2.php?auth=DdC33D7d2C2a7&action=4&num1=10&num2=13', { method: 'GET' })
+            .then(data => {
+                resolve(data.text());
+            });
+    });
+
+    // promiseAll - will wait until two promise and only after that starts code inside
+    Promise.all([a, b]).then(value => {
+        document.querySelector('.out-2').innerHTML = value;
+    });
 }
 
 // ваше событие здесь!!!
-
+document.querySelector('.b-2').onclick = t2;
 
 // Task 3 ============================================
 /*  
