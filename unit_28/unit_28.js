@@ -1,18 +1,46 @@
  // Task 1
  // Создайте класс Goods. Класс должен содержать свойства name, amount. Создайте на его основе объект goods. Выведите в консоль созданный объект. Помните, все классы - в отдельных файлах. Имена классов с большой буквы.
+class Goods {
+    name;
+    amount;
+    
+    constructor(n, a) {
+        this.name = n;
+        this.amount = a;
+    }
 
+    
+}
+
+let goods = new Goods();
+console.log(goods);
  
  //Task 2.
  //  Добавьте в класс Goods свойства image и count - картинка и количество на складе.
+class Goods2 extends Goods {
+    image;
+    count;
 
+    constructor(n, a, i, c) {
+        super(n, a);
+        this.image = i;
+        this.count = c;
+    }
+}
  
  //Task 3.
  //  Добавьте в класс Goods метод draw, который будет выводить div с изображением, названием товара, ценой - в указанный элемент (дозапись).
-
+class Goods3 extends Goods2 {
+    draw(element) {
+        let div = document.querySelector(element);
+        div.innerHTML = `<img src=${this.image}><p>${this.name}; ${this.amount}</p>`
+    }
+}
  
  // Task 4.
  // Создайте на основе класса Goods объект goods2, заполните свойства, примените метод draw для вывода товара на страницу в блок out-4.
-
+let goods3 = new Goods3('Tap', 12.3, 'img/1.png', 13);
+goods3.draw('.out-4');
 
  //Task 5.
  // Создайте класс Goods2, который наследуется от Goods. Добавьте ему свойство sale равное true или false. Перезапишите метод draw так, чтобы он выводил информацию о распродажах.
